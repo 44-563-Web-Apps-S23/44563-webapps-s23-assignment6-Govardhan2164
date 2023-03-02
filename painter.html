@@ -15,7 +15,7 @@
     <label for="guessId">Guess the painter </label>
     <input type ="text" id="guessId" autofocus > <br>
 
-    <input type="button" onclick="checkPainter()" value="Check the guess">
+    <input type="button" id="gov" onclick="checkPainter()" value="Check the guess">
 </form>
 
    <p id="Myresult"> </p>
@@ -35,7 +35,32 @@ function checkPainter(){
         alert("sorry");
     }
     document.getElementById('Myresult').innerHTML = "First count is "+good+" Second count is "+oops;
+    if(oops>=10){
+            alert("Sorry, ran out of guesses.");
+            document.getElementById("gov").style.visibility="hidden";
+        }
 }
+</script>
+<div class="container">
+    <img src="RESTIO.jpg" id="image" width="100" height="100" onclick="selectImage()">
+</div>
+<script>
+    var useImage = 1;
+    function selectImage() {
+
+        switch (useImage) {
+            case 1:
+                useImage = 2; document.getElementById("image").src = "RESTIO.jpg";
+                break;
+            case 2:
+                useImage = 3; document.getElementById("image").src = "kiaat.jpg";
+                break;
+            case 3:
+                useImage = 1; document.getElementById("image").src = "ILEX.jpg";
+                break;
+        }
+      
+    }
 </script>
 
 </body>
