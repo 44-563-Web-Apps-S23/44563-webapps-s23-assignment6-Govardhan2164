@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html>
+    <title>Conversion webpage</title>
+
+    <body>
+
+        <h2>Govardhan Reddy shows currency conversions</h2>
+        
+        <form>
+            <label for="baseValueAmount">Enter base amount </label>
+            <input type ="number" id="baseValueAmount"  value=50> <br>
+        
+            <label for="conversionValueAmount">Enter the conversion rate </label>
+            <input type ="number" id="conversionValueAmount"  value=35> <br>
+        
+            <input type="button" onclick="convert()" value="Show conversions"><br>
+        
+        
+        
+            <input type="radio" name="radiovalue" id="average" value="mean" onclick="chooseOp()">
+            <label for="average">average</label></br>
+        
+            <input type="radio" name="radiovalue" id="max" value="maximum" onclick="chooseOp()">
+            <label for="max">max</label></br>
+        
+            <input type="radio" name="radiovalue" id="min" value="minimum"  onclick="chooseOp()">
+            <label for="min">min</label></br>
+        
+          <input type="button" onclick="resolveRadio()" value="Get values from radio group">
+        </form>
+        
+        <p id="result"></p>
+        <p id="radioResult"></p>
+
+<head>
+  
+    <script>
+
+        function convert(){
+            let toShow="";
+            let baseValueAmount=document.getElementById("baseValueAmount").value;
+            let conversionRate=document.getElementById("conversionValueAmount").value;
+
+            for(let i=0;i<5;i++){
+                let convertedValue=(baseValueAmount*conversionRate).toFixed(2);
+                toShow=toShow+baseValueAmount+" is "+convertedValue+"; ";
+                baseValueAmount=baseValueAmount*2;
+            }
+            document.getElementById('result').innerHTML="Conversions are:"+toShow;
+        }
+
+        function chooseOp(){
+            
+            let baseValueAmount=Number(document.getElementById("baseValueAmount").value);
+            let conversionRate=Number(document.getElementById("conversionValueAmount").value);
+            let average= document.getElementById("average").checked;
+            let max= document.getElementById("max").checked;
+            let min= document.getElementById("min").checked;
+            if(average){
+                let x=baseValueAmount+conversionRate;
+                
+                document.getElementById('radioResult').innerHTML=(x)/2;         
+            }
+            if(max){
+                  if(baseValueAmount>conversionRate){
+                    document.getElementById('radioResult').innerHTML="max of "+baseValueAmount+" and "+conversionRate+" is "+baseValueAmount;
+                  }else{
+                    document.getElementById('radioResult').innerHTML="max of "+baseValueAmount+" and "+conversionRate+" is "+conversionRate;
+                  }
+            }
+            if(min){
+                if(baseValueAmount<conversionRate){
+                    document.getElementById('radioResult').innerHTML="min of "+baseValueAmount+" and "+conversionRate+" is "+baseValueAmount;
+                  }else{
+                    document.getElementById('radioResult').innerHTML="min of "+baseValueAmount+" and "+conversionRate+" is "+conversionRate;
+                  }
+            }
+
+        }
+    </script>
+</head>
+
+
+
+
+</body>
+</html> 
